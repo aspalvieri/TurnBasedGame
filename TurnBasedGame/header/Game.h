@@ -25,6 +25,8 @@ public:
 private:
 	//Player variables
 	SDL_Rect *camera;
+
+	//Engine variables
 	double averageFPS = 0;
 	Timer FPS, capFPS;
 	int countedFrames = 0;

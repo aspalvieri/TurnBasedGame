@@ -3,8 +3,6 @@
 Game::Game() {
 	gRenderer = SDLR::gRenderer;
 	gWindow = SDLR::gWindow;
-	SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
-	srand((unsigned)time(0));
 
 	camera = &SDLR::camera;
 	mousePos = &SDLR::mousePosition;
@@ -17,8 +15,10 @@ Game::~Game() {
 }
 
 void Game::initialize() {
-	gameRunning = true;
 	buildFontManager();
+	SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
+	srand((unsigned)time(0));
+	gameRunning = true;
 	FPS.start();
 }
 

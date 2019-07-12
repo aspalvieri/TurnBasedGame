@@ -13,13 +13,6 @@ void Game::handleEvents() {
 		//User pressed a key down
 		if (e.type == SDL_KEYDOWN) {
 			switch (e.key.keysym.sym) {
-			//Resets fps
-			case SDLK_p:
-				averageFPS = 0;
-				countedFrames = 0;
-				FPS.reset();
-				cout << "Reset FPS.\n";
-				break;
 			//Closes game
 			case SDLK_ESCAPE:
 				gameRunning = false;
@@ -33,6 +26,13 @@ void Game::handleEvents() {
 		//User released a key
 		if (e.type == SDL_KEYUP) {
 			switch (e.key.keysym.sym) {
+			//Resets fps
+			case SDLK_p:
+				averageFPS = 0;
+				countedFrames = 0;
+				FPS.reset();
+				cout << "Reset FPS.\n";
+				break;
 			default:
 				break;
 			}
