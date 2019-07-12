@@ -3,11 +3,15 @@
 
 #include "Includes.h"
 #include "Globals.h"
+#include "RDevice.h"
 
 //Static SDL Renderer, easier to pass around
 struct SDLR
 {
 	SDLR();
+
+	//Randomization functions
+	static RDevice rand;
 
 	//Rendering software
 	static SDL_Renderer* gRenderer;

@@ -10,6 +10,7 @@ pair<int, int> SDLR::mousePosition = { 0, 0 };
 int SDLR::mouseButton = 0;
 SDL_Rect SDLR::camera = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 SDL_Rect SDLR::mPos = { 0, 0, 1, 1 };
+RDevice SDLR::rand;
 
 //Static managers
 vector<Sprite*> Sprite::spriteManager;

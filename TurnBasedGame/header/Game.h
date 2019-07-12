@@ -3,7 +3,6 @@
 
 #include "Sprite.h"
 #include "Timer.h"
-#include "RDevice.h"
 
 class Game {
 public:
