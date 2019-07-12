@@ -17,9 +17,18 @@ public:
 	void update();
 	void render();
 
+	//Build functions
+	void buildFontManager();
+
+	void limitFPS();
+
 private:
 	//Player variables
 	SDL_Rect *camera;
+	double averageFPS = 0;
+	Timer FPS, capFPS;
+	int countedFrames = 0;
+	Texture fpsText;
 
 	//Static variables
 	pair<int, int> *mousePos;

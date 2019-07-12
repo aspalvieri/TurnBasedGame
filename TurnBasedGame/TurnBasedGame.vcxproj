@@ -116,6 +116,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="source\GameCore.cpp" />
+    <ClCompile Include="source\GameEvents.cpp" />
     <ClCompile Include="source\main.cpp" />
     <ClCompile Include="source\RDevice.cpp" />
     <ClCompile Include="source\SDLR.cpp" />

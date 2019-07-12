@@ -18,35 +18,36 @@ Game::~Game() {
 
 void Game::initialize() {
 	gameRunning = true;
+	buildFontManager();
+	FPS.start();
 }
 
 bool Game::running() {
 	return gameRunning;
 }
 
-void Game::handleEvents() {
-	while (SDL_PollEvent(&e) != 0) {
-		//Update the user's mouse properties
-		if (e.type == SDL_MOUSEMOTION || e.type == SDL_MOUSEBUTTONDOWN || e.type == SDL_MOUSEBUTTONUP) {
-			*mouseButton = SDL_GetMouseState(&mousePos->first, &mousePos->second);
-			mPos->x = mousePos->first;
-			mPos->y = mousePos->second;
-		}
-
-		//User presses exit
-		if (e.type == SDL_QUIT)
-			gameRunning = false;
+void Game::buildFontManager()
+{
+	//Load font sizes into fontManager for later use
+	for (int i = 12; i <= 24; i += 2)
+	{
+		fontManager[i] = TTF_OpenFont("bin/fonts/codenewroman.ttf", i);
 	}
 }
 
 void Game::update() {
+	//Update FPS and text
+	averageFPS = countedFrames / (FPS.getTicks() / 1000.f);
+	fpsText.loadFont(to_string(averageFPS), SDL_Color{ 0,0,0 }, fontManager[18], SCREEN_WIDTH);
+
 
 }
 
 void Game::render() {
 	SDL_RenderClear(gRenderer);
 
-
+	fpsText.render(0, 0);
 
 	SDL_RenderPresent(gRenderer);
 }
+
