@@ -117,11 +117,13 @@
   <ItemGroup>
     <ClCompile Include="source\GameCore.cpp" />
     <ClCompile Include="source\GameEvents.cpp" />
+    <ClCompile Include="source\GameUpdates.cpp" />
     <ClCompile Include="source\main.cpp" />
     <ClCompile Include="source\RDevice.cpp" />
     <ClCompile Include="source\SDLR.cpp" />
     <ClCompile Include="source\Sprite.cpp" />
     <ClCompile Include="source\Texture.cpp" />
+    <ClCompile Include="source\Tile.cpp" />
     <ClCompile Include="source\Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -132,6 +134,7 @@
     <ClInclude Include="header\SDLR.h" />
     <ClInclude Include="header\Sprite.h" />
     <ClInclude Include="header\Texture.h" />
+    <ClInclude Include="header\Tile.h" />
     <ClInclude Include="header\Timer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
