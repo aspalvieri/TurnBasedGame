@@ -33,6 +33,17 @@ void Game::handleEvents() {
 				FPS.reset();
 				cout << "Reset FPS.\n";
 				break;
+			case SDLK_w:
+				newline(0, "I was created in the initialize function.", fontManager[16], 0, 30);
+				newline(0, "I exist forever without any new updates.", fontManager[16], 0, 60);
+				newline(0, "Just render me. Off I go.", fontManager[16], 0, 90);
+				break;
+			case SDLK_a:
+				clearLineLayer(0);
+				break;
+			case SDLK_d:
+				clearAllLineLayers();
+				break;
 			default:
 				break;
 			}

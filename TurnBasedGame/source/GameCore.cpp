@@ -20,10 +20,6 @@ void Game::initialize() {
 	srand((unsigned)time(0));
 	gameRunning = true;
 	FPS.start();
-
-	newline(0, "I was created in the initialize function.", fontManager[16], 0, 30);
-	newline(0, "I exist forever without any new updates.", fontManager[16], 0, 60);
-	newline(0, "Just render me. Off I go.", fontManager[16], 0, 90);
 }
 
 bool Game::running() {
@@ -49,13 +45,17 @@ void Game::newline(int layer, std::string text, TTF_Font * gFont, int x, int y, 
 }
 
 void Game::clearLineLayer(int layer) {
-	//add iterate through vector and call texture.free()
+	for (auto& line : staticText[layer]) {
+		line.texture.free();
+	}
 	staticText[layer].clear();
 }
 
 void Game::clearAllLineLayers() {
 	for (int i = 0; i < MAX_STATICTEXT_LAYERS; i++) {
-		//add iterate through vector and call texture.free()
+		for (auto& line : staticText[i]) {
+			line.texture.free();
+		}
 		staticText[i].clear();
 	}
 }

@@ -15,7 +15,6 @@ void Game::render() {
 
 	//Render all line layers
 	for (int i = 0; i < MAX_STATICTEXT_LAYERS; i++) {
-		//Find proper vector iteration
 		for (auto& line : staticText[i]) {
 			line.texture.render(line.x, line.y);
 		}
