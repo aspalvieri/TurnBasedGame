@@ -11,6 +11,14 @@ Texture::~Texture()
 	//free();
 }
 
+StaticTexture::StaticTexture() {
+
+}
+
+StaticTexture::~StaticTexture() {
+	//texture.free();
+}
+
 bool Texture::loadImage(string path)
 {
 	//Get rid of preexisting texture

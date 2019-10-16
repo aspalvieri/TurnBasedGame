@@ -15,6 +15,9 @@ public:
 	void handleEvents();
 	void update();
 	void render();
+	void newline(int layer, std::string text, TTF_Font* gFont, int x = 0, int y = 0, SDL_Color textColor = { 0, 0, 0 }, int wrapLength = SCREEN_WIDTH);
+	void clearLineLayer(int layer);
+	void clearAllLineLayers();
 
 	//Build functions
 	void buildFontManager();
@@ -25,17 +28,20 @@ private:
 	//Player variables
 	SDL_Rect *camera;
 
+	//Game variables
+
 	//Engine variables
 	double averageFPS = 0;
 	Timer FPS, capFPS;
 	int countedFrames = 0;
 	Texture fpsText;
+	vector<StaticTexture> staticText[MAX_STATICTEXT_LAYERS];
 
 	//Static variables
 	pair<int, int> *mousePos;
 	SDL_Rect *mPos;
 	int *mouseButton;
-	map<int, TTF_Font*> fontManager;
+	map<int, TTF_Font*> fontManager, fontManagerBold;
 	bool gameRunning;
 
 	//SDL variables

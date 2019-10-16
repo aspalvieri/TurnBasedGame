@@ -26,5 +26,6 @@ int main(int argc, char* argv[]) {
 		game.render();
 		game.limitFPS();
 	}
+
 	return 0;
 }

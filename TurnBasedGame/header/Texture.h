@@ -36,4 +36,13 @@ private:
 	SDL_Renderer *gRenderer = NULL;
 };
 
+//Just a regular texture, but with x/y coordinates
+struct StaticTexture {
+	StaticTexture();
+	~StaticTexture();
+
+	Texture texture;
+	int x = 0, y = 0;
+};
+
 #endif//TEXTURE_H

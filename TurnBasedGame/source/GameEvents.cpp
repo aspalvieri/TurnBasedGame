@@ -39,8 +39,11 @@ void Game::handleEvents() {
 		}
 
 		//User presses exit button (top-right)
-		if (e.type == SDL_QUIT)
+		if (e.type == SDL_QUIT) {
 			gameRunning = false;
+			cout << "Exited game.\n";
+			break;
+		}
 	}
 }
 
