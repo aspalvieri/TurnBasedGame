@@ -13,13 +13,14 @@ void Game::render() {
 
 	fpsText.render(0, 0);
 
-	//Render all line layers
-	for (int i = 0; i < MAX_STATICTEXT_LAYERS; i++) {
-		for (auto& line : staticText[i]) {
-			line.texture.render(line.x, line.y);
-		}
-	}
+	//Render all line layers on layer 0. there are MAX_STATICTEXT_LAYERS # of layers.
+	//Line layers are split like this so you can layer images overtop the text layer
+	//The purpose of line layers is to loadFont once and render many times
+	for (auto& line : staticText[0])
+		line.texture.render(line.x, line.y);
 
 	SDL_RenderPresent(gRenderer);
 }
 
+//for (unsigned int i = 0; i < vector.size(); i++)
+//vector.erase(remove_if(vector.begin(), vector.end(), bool/function/ternary), vector.end());

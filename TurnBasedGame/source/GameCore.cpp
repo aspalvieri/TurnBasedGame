@@ -48,7 +48,8 @@ void Game::clearLineLayer(int layer) {
 	for (auto& line : staticText[layer]) {
 		line.texture.free();
 	}
-	staticText[layer].clear();
+	//The same as vector.clear(), but frees memory
+	vector<StaticTexture>().swap(staticText[layer]);
 }
 
 void Game::clearAllLineLayers() {
@@ -56,6 +57,7 @@ void Game::clearAllLineLayers() {
 		for (auto& line : staticText[i]) {
 			line.texture.free();
 		}
-		staticText[i].clear();
+		//The same as vector.clear(), but frees memory
+		vector<StaticTexture>().swap(staticText[i]);
 	}
 }
