@@ -83,8 +83,8 @@ public:
 
 	Sprite& setSprite(Sprite s);
 
-	Sprite& setCamera(SDL_Rect *cam = NULL);
-	SDL_Rect * getCamera();
+	Sprite& setCamera(bool cam = NULL);
+	bool getCamera();
 
 	SDL_Texture* getTexture();
 
@@ -101,7 +101,7 @@ public:
 	Sprite & freeImageSet();
 
 private:
-	SDL_Rect * camera = NULL;
+	bool camera = false;
 	std::unordered_map<std::string, Texture> images;
 	std::string spriteName = "";
 

@@ -10,6 +10,15 @@ void Game::handleEvents() {
 			mPos->y = mousePos->second;
 		}
 
+		////Global Events
+
+		//User presses exit button (top-right)
+		if (e.type == SDL_QUIT) {
+			gameRunning = false;
+			cout << "Exited game.\n";
+			break;
+		}
+
 		//User pressed a key down
 		if (e.type == SDL_KEYDOWN) {
 			switch (e.key.keysym.sym) {
@@ -38,12 +47,8 @@ void Game::handleEvents() {
 			}
 		}
 
-		//User presses exit button (top-right)
-		if (e.type == SDL_QUIT) {
-			gameRunning = false;
-			cout << "Exited game.\n";
-			break;
-		}
+		//Handle events for current game screen
+		routeManager(2);
 	}
 }
 

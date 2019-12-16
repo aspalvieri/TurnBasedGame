@@ -1,5 +1,34 @@
 #include "../header/Game.h"
 
+// 0 = Render,,, 1 = Update,,, 2 = Events,,, 3 = Build,,, 4 = Destory
+void Game::routeManager(int route) {
+	// Render
+	if (route == 0) {
+		if (currentScreen == "mainGame")
+			mainGameRender();
+	}
+	// Update
+	else if (route == 1) {
+		if (currentScreen == "mainGame")
+			mainGameUpdate();
+	}
+	// Events
+	else if (route == 2) {
+		if (currentScreen == "mainGame")
+			mainGameEvents();
+	}
+	// Build
+	else if (route == 3) {
+		if (currentScreen == "mainGame")
+			mainGameBuild();
+	}
+	// Destroy
+	else if (route == 4) {
+		if (currentScreen == "mainGame")
+			mainGameDestroy();
+	}
+}
+
 Game::Game() {
 	gRenderer = SDLR::gRenderer;
 	gWindow = SDLR::gWindow;
@@ -20,6 +49,7 @@ void Game::initialize() {
 	srand((unsigned)time(0));
 	gameRunning = true;
 	FPS.start();
+	routeManager(3);
 }
 
 bool Game::running() {
@@ -36,28 +66,21 @@ void Game::buildFontManager() {
 	}
 }
 
-void Game::newline(int layer, std::string text, TTF_Font * gFont, int x, int y, SDL_Color textColor, int wrapLength) {
-	//Creates a new texture in the staticText vector for being written once and printed at location
-	staticText[layer].push_back(StaticTexture());
-	staticText[layer].back().texture.loadFont(text, textColor, gFont, wrapLength);
-	staticText[layer].back().x = x;
-	staticText[layer].back().y = y;
+void Game::newText(string key, std::string text, TTF_Font * gFont, int x, int y, SDL_Color textColor, int wrapLength) {
+	dynamicMap[key].loadFont(text, textColor, gFont, wrapLength);
+	dynamicMap[key].x = x;
+	dynamicMap[key].y = y;
 }
 
-void Game::clearLineLayer(int layer) {
-	for (auto& line : staticText[layer]) {
-		line.texture.free();
-	}
-	//The same as vector.clear(), but frees memory
-	vector<StaticTexture>().swap(staticText[layer]);
+void Game::newImage(string key, std::string path, int x, int y) {
+	dynamicMap[key].loadImage(path);
+	dynamicMap[key].x = x;
+	dynamicMap[key].y = y;
 }
 
-void Game::clearAllLineLayers() {
-	for (int i = 0; i < MAX_STATICTEXT_LAYERS; i++) {
-		for (auto& line : staticText[i]) {
-			line.texture.free();
-		}
-		//The same as vector.clear(), but frees memory
-		vector<StaticTexture>().swap(staticText[i]);
+void Game::clearDynamicMap() {
+	for (auto& line : dynamicMap) {
+		line.second.free();
 	}
+	dynamicMap.clear();
 }

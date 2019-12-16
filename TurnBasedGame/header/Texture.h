@@ -31,17 +31,19 @@ public:
 	double scaleWidth = 0.0;
 	double scaleHeight = 0.0;
 	pair<double, double> scale;
+	bool camera = false;
 
 private:
 	SDL_Renderer *gRenderer = NULL;
 };
 
 //Just a regular texture, but with x/y coordinates
-struct StaticTexture {
+struct StaticTexture : public Texture {
 	StaticTexture();
 	~StaticTexture();
 
-	Texture texture;
+	void render(SDL_Rect* = NULL, double = 0.0, SDL_Point* = NULL, SDL_RendererFlip = SDL_FLIP_NONE);
+
 	int x = 0, y = 0;
 };
 

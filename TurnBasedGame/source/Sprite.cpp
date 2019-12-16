@@ -250,10 +250,10 @@ Sprite & Sprite::draw()
 		clip.y = animations[currentAnimation][currentFrame].second;
 		clip.w = frameSize.first;
 		clip.h = frameSize.second;
-		if (camera == NULL)
+		if (!camera)
 			images[location].render(x, y, &clip, angle, &center);
-		else if (camera != NULL && checkCollision(&box, camera))
-			images[location].render(x - camera->x, y - camera->y, &clip, angle, &center);
+		else if (camera && checkCollision(&box, &SDLR::camera))
+			images[location].render(x - SDLR::camera.x, y - SDLR::camera.y, &clip, angle, &center);
 	}
 	return *this;
 }
@@ -279,13 +279,13 @@ Sprite & Sprite::setSprite(Sprite s)
 	return *this;
 }
 
-Sprite & Sprite::setCamera(SDL_Rect * cam)
+Sprite & Sprite::setCamera(bool cam)
 {
 	camera = cam;
 	return *this;
 }
 
-SDL_Rect * Sprite::getCamera()
+bool Sprite::getCamera()
 {
 	return camera;
 }
@@ -333,6 +333,7 @@ Sprite & Sprite::freeImageSet()
 	return *this;
 }
 
+/*
 bool checkCollision(SDL_Rect *A, SDL_Rect *B)
 {
 	//The sides of the rectangles
@@ -370,6 +371,35 @@ bool checkCollision(SDL_Rect *A, SDL_Rect *B)
 	}
 
 	if (leftA >= rightB)
+	{
+		return false;
+	}
+
+	//If none of the sides from A are outside B
+	return true;
+}
+*/
+
+//Attempted to make it cleaner
+bool checkCollision(SDL_Rect *A, SDL_Rect *B)
+{
+	//If any of the sides from A are outside of B
+	if ((A->y + A->h) <= B->y)
+	{
+		return false;
+	}
+
+	if (A->y >= (B->y + B->h))
+	{
+		return false;
+	}
+
+	if ((A->x + A->w) <= B->x)
+	{
+		return false;
+	}
+
+	if (A->x >= (B->x + B->w))
 	{
 		return false;
 	}

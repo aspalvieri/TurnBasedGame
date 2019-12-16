@@ -11,12 +11,16 @@ Texture::~Texture()
 	//free();
 }
 
-StaticTexture::StaticTexture() {
+StaticTexture::StaticTexture() : Texture() {
 
 }
 
 StaticTexture::~StaticTexture() {
 	//texture.free();
+}
+
+void StaticTexture::render(SDL_Rect* clip, double angle, SDL_Point* center, SDL_RendererFlip flip) {
+	Texture::render(x, y, clip, angle, center, flip);
 }
 
 bool Texture::loadImage(string path)
@@ -82,6 +86,12 @@ void Texture::render(int x, int y, SDL_Rect* clip, double angle, SDL_Point* cent
 	if (clip != NULL) {
 		renderQuad.w = clip->w;
 		renderQuad.h = clip->h;
+	}
+
+	//Add camera bounds
+	if (camera) {
+		renderQuad.x -= SDLR::camera.x;
+		renderQuad.y -= SDLR::camera.y;
 	}
 
 	renderQuad.w = (int)(renderQuad.w * scale.first);

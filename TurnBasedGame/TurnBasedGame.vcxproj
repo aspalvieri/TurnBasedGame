@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -115,10 +115,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="source\Entity.cpp" />
+    <ClCompile Include="source\EntityFunctions.cpp" />
     <ClCompile Include="source\GameCore.cpp" />
     <ClCompile Include="source\GameEvents.cpp" />
+    <ClCompile Include="source\MapFunctions.cpp" />
     <ClCompile Include="source\GameUpdates.cpp" />
     <ClCompile Include="source\main.cpp" />
+    <ClCompile Include="source\mainGameEvents.cpp" />
+    <ClCompile Include="source\mainGameUpdates.cpp" />
+    <ClCompile Include="source\Player.cpp" />
     <ClCompile Include="source\RDevice.cpp" />
     <ClCompile Include="source\SDLR.cpp" />
     <ClCompile Include="source\Sprite.cpp" />
@@ -127,9 +133,11 @@
     <ClCompile Include="source\Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="header\Entity.h" />
     <ClInclude Include="header\Game.h" />
     <ClInclude Include="header\Globals.h" />
     <ClInclude Include="header\Includes.h" />
+    <ClInclude Include="header\Player.h" />
     <ClInclude Include="header\RDevice.h" />
     <ClInclude Include="header\SDLR.h" />
     <ClInclude Include="header\Sprite.h" />

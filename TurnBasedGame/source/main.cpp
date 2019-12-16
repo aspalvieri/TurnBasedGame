@@ -27,5 +27,8 @@ int main(int argc, char* argv[]) {
 		game.limitFPS();
 	}
 
+	//Destroys current screen before closing program
+	game.routeManager(4);
+
 	return 0;
 }

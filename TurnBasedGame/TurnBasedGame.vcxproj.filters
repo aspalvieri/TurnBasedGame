@@ -28,6 +28,21 @@
     <Filter Include="Source Files\Game">
       <UniqueIdentifier>{b4578eb4-a967-4ea0-b4e8-9d3042e59b07}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Game\Screens">
+      <UniqueIdentifier>{3179da62-bbcf-4558-a690-0c7235993ac0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Screens\mainGame">
+      <UniqueIdentifier>{dd915c89-de97-40a1-8780-48d06d4a62a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Entity">
+      <UniqueIdentifier>{16405cda-6c58-4fae-8221-d5f94a353d1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entity">
+      <UniqueIdentifier>{b7c413c8-40d6-4736-affd-571f708d31b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Functions">
+      <UniqueIdentifier>{3e57a2e9-752b-496b-afe5-b2d26ec9212f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
@@ -60,6 +75,24 @@
     <ClCompile Include="source\Tile.cpp">
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
+    <ClCompile Include="source\mainGameEvents.cpp">
+      <Filter>Source Files\Game\Screens\mainGame</Filter>
+    </ClCompile>
+    <ClCompile Include="source\mainGameUpdates.cpp">
+      <Filter>Source Files\Game\Screens\mainGame</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Entity.cpp">
+      <Filter>Source Files\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="source\MapFunctions.cpp">
+      <Filter>Source Files\Game\Functions</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Player.cpp">
+      <Filter>Source Files\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="source\EntityFunctions.cpp">
+      <Filter>Source Files\Game\Functions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\Globals.h">
@@ -88,6 +121,12 @@
     </ClInclude>
     <ClInclude Include="header\Tile.h">
       <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Entity.h">
+      <Filter>Header Files\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Player.h">
+      <Filter>Header Files\Entity</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

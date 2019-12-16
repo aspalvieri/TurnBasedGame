@@ -16,6 +16,7 @@
 #include <iomanip>
 #include <map>
 #include <unordered_map>
+#include <functional>
 #include <vector>
 #include <random>
 #include <tuple>
