@@ -8,7 +8,8 @@ void Game::mainGameBuild() {
 	//First bool is collision
 	//Second bool is if the tile can have shadows cast on it
 	//Third bool is if the tile casts a shadow
-	tileClips[5].second = { true, false, true };
+	//Fourth bool is if it has an inner shadow
+	tileClips[5].second = { true, false, true, true };
 	buildTiles("bin/maps/map1.csv");
 
 	player.loadSpriteImage("bin/images/player.png")
@@ -28,8 +29,8 @@ void Game::mainGameBuild() {
 
 void Game::mainGameDestroy() {
 	clearTiles();
+	clearClipsets();
 	clearDynamicMap(); //Destroys all newTexts and newImages
-	tileClips.clear();
 }
 
 void Game::mainGameEvents() {

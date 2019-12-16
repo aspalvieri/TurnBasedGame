@@ -21,7 +21,7 @@ class Tile
 {
 public:
 	Tile();
-	Tile(int x, int y, SDL_Rect *clip, bool collide, bool takesShadow, bool castsShadow, Texture *tilesheet);
+	Tile(int x, int y, SDL_Rect *clip, bool collide, bool takesShadow, bool castsShadow, bool hasInner, Texture *tilesheet);
 	~Tile();
 
 	Tile& setClip(SDL_Rect *clip);
@@ -36,6 +36,9 @@ public:
 	Tile& setCastsShadow(bool castsShadow);
 	bool getCastsShadow();
 
+	Tile& setHasInner(bool hasInner);
+	bool getHasInner();
+
 	Tile& setTexture(Texture *tilesheet);
 	Texture getTexture();
 
@@ -46,7 +49,7 @@ public:
 	Shader shader;
 
 private:
-	bool collide, takesShadow, castsShadow;
+	bool collide, takesShadow, castsShadow, hasInner;
 	Texture *texture;
 	SDL_Rect *clip, box;
 };

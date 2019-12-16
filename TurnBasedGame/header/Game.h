@@ -31,6 +31,7 @@ public:
 	//Loads the dynamicMap["tileset"] texture and sets initial clips
 	void buildTileset();
 	void clearTiles();
+	void clearClipsets();
 	void updateEntity(Entity *ent);
 	bool checkAllCollision(Entity*);
 	void updateCamera();
@@ -57,7 +58,7 @@ private:
 	vector<Tile> tiles;
 	vector<SDL_Rect> shaderClips;
 	//The bools are: Collide, takesShadow, castsShadow
-	unordered_map<int, pair<SDL_Rect, tuple<bool, bool, bool>>> tileClips;
+	unordered_map<int, pair<SDL_Rect, tuple<bool, bool, bool, bool>>> tileClips;
 	//mapMaxX/Y are the real size (ie 1280x720), while indexMaxX/Y are the literals
 	//'literals' meaning the X/Y divided by TILE_SIZE
 	int mapMaxX, mapMaxY, indexMaxX, indexMaxY;

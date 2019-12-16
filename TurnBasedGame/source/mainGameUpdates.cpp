@@ -2,7 +2,6 @@
 
 void Game::mainGameUpdate() {
 	updateEntity(&player);
-	updateCamera(); 
 }
 
 void Game::mainGameRender() {

@@ -61,6 +61,10 @@ void Game::updateEntity(Entity *ent) {
 	if (!ent->isPlayer) {
 		ent->updateCamera();
 	}
+	//Else, update player's camera using global camera
+	else if (ent->isPlayer) {
+		updateCamera();
+	}
 }
 
 void Game::updateCamera() {
