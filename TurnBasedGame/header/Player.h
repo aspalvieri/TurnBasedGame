@@ -11,6 +11,7 @@ public:
 	void handleEvents(SDL_Event *e);
 	void update();
 	bool canMove();
+	void setCamera(SDL_Rect*);
 
 private:
 	bool up = false, down = false, right = false, left = false;

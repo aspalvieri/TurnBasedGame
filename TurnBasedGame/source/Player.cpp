@@ -4,9 +4,7 @@ Player::Player() {
 	isPlayer = true;
 }
 
-Player::~Player() {
-
-}
+Player::~Player() { }
 
 void Player::handleEvents(SDL_Event * e) {
 	if (e->type == SDL_KEYDOWN) {
@@ -52,6 +50,14 @@ void Player::update() {
 	Entity::update();
 	xVel = speed * (right - left);
 	yVel = speed * (down - up);
+
+	//Triangular correct 2D movements
+	if (xVel != 0 && yVel != 0) {
+		xVel /= sqrt(2.0);
+		yVel /= sqrt(2.0);
+	}
+
+	//Animations
 	if (canMove())
 		Sprite::setAnimationRaw("Moving");
 	else
@@ -62,4 +68,10 @@ bool Player::canMove() {
 	if (up || down || left || right)
 		return true;
 	return false;
+}
+
+void Player::setCamera(SDL_Rect *camBounds) {
+	this->camBounds = camBounds;
+	this->camera = &SDLR::camera;
+	Sprite::setCamera(true);
 }

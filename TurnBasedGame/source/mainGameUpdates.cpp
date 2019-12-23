@@ -21,6 +21,7 @@ void Game::mainGameRender() {
 		int yIndex = y * indexMaxX;
 		for (int x = camBounds.x; x <= camBounds.w; x++) {
 			tiles[x + yIndex].shader.render();
+			tiles[x + yIndex].shadow.render();
 		}
 	}
 }

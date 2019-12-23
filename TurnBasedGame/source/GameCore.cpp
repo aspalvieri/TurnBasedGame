@@ -45,7 +45,7 @@ Game::~Game() {
 
 void Game::initialize() {
 	buildFontManager();
-	SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
+	SDL_SetRenderDrawColor(gRenderer, 0, 0, 0, 0xFF);
 	srand((unsigned)time(0));
 	gameRunning = true;
 	FPS.start();

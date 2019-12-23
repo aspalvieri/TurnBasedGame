@@ -2,17 +2,19 @@
 
 Tile::Tile() { }
 
-Tile::Tile(int x, int y, SDL_Rect *clip, bool collide, bool takesShadow, bool castsShadow, bool hasInner, Texture * tilesheet)
+Tile::Tile(int x, int y, SDL_Rect *clip, int clipID, bool collide, bool takesShadow, bool castsShadow, bool hasInner, bool requiresSame, Texture * tilesheet)
 {
 	box.x = x;
 	box.y = y;
 	box.w = TILE_SIZE;
 	box.h = TILE_SIZE;
 	this->clip = clip;
+	this->clipID = clipID;
 	this->collide = collide;
 	this->takesShadow = takesShadow;
 	this->castsShadow = castsShadow;
 	this->hasInner = hasInner;
+	this->requiresSame = requiresSame;
 	texture = tilesheet;
 	texture->camera = true;
 }
@@ -28,6 +30,17 @@ Tile & Tile::setClip(SDL_Rect *clip)
 SDL_Rect* Tile::getClip()
 {
 	return clip;
+}
+
+Tile & Tile::setClipID(int clipID)
+{
+	this->clipID = clipID;
+	return *this;
+}
+
+int Tile::getClipID()
+{
+	return clipID;
 }
 
 Tile & Tile::setCollide(bool collide)
@@ -71,6 +84,17 @@ Tile & Tile::setHasInner(bool hasInner)
 bool Tile::getHasInner()
 {
 	return hasInner;
+}
+
+Tile & Tile::setRequiresSame(bool requiresSame)
+{
+	this->requiresSame = requiresSame;
+	return *this;
+}
+
+bool Tile::getRequiresSame()
+{
+	return requiresSame;
 }
 
 Tile & Tile::setTexture(Texture * tilesheet)

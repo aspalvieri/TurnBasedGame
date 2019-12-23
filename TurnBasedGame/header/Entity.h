@@ -15,15 +15,24 @@ public:
 	//Updates camera and camBounds for non-players
 	virtual void updateCamera();
 
+	void setBounds(int *mapMaxX, int *mapMaxY, int *indexMaxX, int *indexMaxY);
+	void setBounds(int *mapMaxX, int *mapMaxY, int *indexMaxX, int *indexMaxY, int width, int height);
+	//Can use setBounds instead 
+	void setCameraBounds(int width, int height);
+
 	//Entity Variables
 	bool isPlayer = false;
-	SDL_Rect camera, camBounds;
+	SDL_Rect *camera, *camBounds;
 	double health = 0, healthmax = 0;
 	double damagemin = 0, damagemax = 0;
 	double xVel = 0, yVel = 0;
 	double speed = 0;
 	int level = 1, gold = 0;
 	int armor = 0;
+
+protected:
+	int *mapMaxX, *mapMaxY, *indexMaxX, *indexMaxY;
+	int maxCameraW, maxCameraH;
 };
 
 #endif//ENTITY_H

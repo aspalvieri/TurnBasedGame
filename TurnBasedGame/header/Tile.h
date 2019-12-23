@@ -21,11 +21,14 @@ class Tile
 {
 public:
 	Tile();
-	Tile(int x, int y, SDL_Rect *clip, bool collide, bool takesShadow, bool castsShadow, bool hasInner, Texture *tilesheet);
+	Tile(int x, int y, SDL_Rect *clip, int clipID, bool collide, bool takesShadow, bool castsShadow, bool hasInner, bool requiresSame, Texture *tilesheet);
 	~Tile();
 
 	Tile& setClip(SDL_Rect *clip);
 	SDL_Rect* getClip();
+
+	Tile& setClipID(int clipID);
+	int getClipID();
 
 	Tile& setCollide(bool collide);
 	bool getCollide();
@@ -39,6 +42,9 @@ public:
 	Tile& setHasInner(bool hasInner);
 	bool getHasInner();
 
+	Tile& setRequiresSame(bool requiresSame);
+	bool getRequiresSame();
+
 	Tile& setTexture(Texture *tilesheet);
 	Texture getTexture();
 
@@ -46,10 +52,13 @@ public:
 
 	void render();
 
-	Shader shader;
+	Shader shader, shadow;
 
 private:
-	bool collide, takesShadow, castsShadow, hasInner;
+	bool collide;
+	//Tile takes a casted shadow, tile casts a shadow, tile has an inner shadow, tile requires same tile for inner shadow
+	bool takesShadow, castsShadow, hasInner, requiresSame;
+	int clipID;
 	Texture *texture;
 	SDL_Rect *clip, box;
 };

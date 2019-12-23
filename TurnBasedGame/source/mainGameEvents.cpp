@@ -4,12 +4,9 @@ void Game::mainGameBuild() {
 	newImage("tileset", "bin/images/tilesheet.png");
 	newImage("shaders", "bin/images/shaders.png");
 	buildTileset();
-	//To set specific collision for tiles, do it after buildTileset() but before buildTiles(), since default is false:
-	//First bool is collision
-	//Second bool is if the tile can have shadows cast on it
-	//Third bool is if the tile casts a shadow
-	//Fourth bool is if it has an inner shadow
-	tileClips[5].second = { true, false, true, true };
+	//To set specific properties for tiles, do it after buildTileset() but before buildTiles(), since default is false:
+	setTileProps({ 7 }, { true, false, true, true, true });
+	setTileProps({ 8, 9 }, { true, true, false, true, false });
 	buildTiles("bin/maps/map1.csv");
 
 	player.loadSpriteImage("bin/images/player.png")
@@ -21,10 +18,10 @@ void Game::mainGameBuild() {
 		.pushFrame("Idle", 0, 0)
 		.pushFrameRow("Moving", 0, 40, 40, 0, 10)
 		.setAnimation("Idle")
-		.setPosition(0, 0);
-	player.speed = 4;
-
-	updateCamera(); //Initial update to set bounds
+		.setPosition(96, 96);
+	player.speed = 3;
+	player.setBounds(&mapMaxX, &mapMaxY, &indexMaxX, &indexMaxY, SCREEN_WIDTH, SCREEN_HEIGHT);
+	player.setCamera(&camBounds);
 }
 
 void Game::mainGameDestroy() {
