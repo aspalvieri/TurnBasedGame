@@ -41,6 +41,23 @@ void Entity::setCameraBounds(int width, int height)
 	maxCameraH = height;
 }
 
+//For Player
+void Entity::setCamera(SDL_Rect *camBounds) {
+	this->camBounds = camBounds;
+	this->camera = &SDLR::camera;
+	Sprite::setCamera(true);
+	updateCamera();
+}
+
+//For Enemies
+void Entity::setCamera() {
+	this->camBounds = new SDL_Rect;
+	this->camera = new SDL_Rect;
+	this->camera->w = maxCameraW;
+	this->camera->h = maxCameraH;
+	Sprite::setCamera(true);
+	updateCamera();
+}
 
 void Entity::updateCamera() {
 	camera->x = (getBox().x + (getBox().w / 2) - (maxCameraW / 2));

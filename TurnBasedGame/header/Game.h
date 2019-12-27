@@ -6,6 +6,7 @@
 #include "Tile.h"
 #include "Entity.h"
 #include "Player.h"
+#include "Enemy.h"
 
 class Game {
 public:
@@ -33,6 +34,7 @@ public:
 	void clearTiles();
 	void clearClipsets();
 	void updateEntity(Entity *ent);
+	void chaseTarget(Enemy *ent);
 	bool checkAllCollision(Entity*);
 	void setTileProps(vector<int>, tuple<bool, bool, bool, bool, bool>);
 	//For shaders on maps
@@ -57,6 +59,13 @@ private:
 
 	//Game variables
 	string currentScreen = "mainGame";
+	vector<Enemy> enemies; //All enemies stored inside this
+	double deltaX, deltaY, magnitude;
+
+	//Enemies
+	Enemy testEnemy;
+
+	//Tile & camera variables
 	vector<Tile> tiles;
 	vector<SDL_Rect> shaderClips;
 	//The bools are: collide, takesShadow, castsShadow, hasInner(shadow), requiresSame(tile)
@@ -77,9 +86,8 @@ private:
 	unordered_map<string, StaticTexture> dynamicMap;
 
 	//Static variables
-	pair<int, int> *mousePos;
-	SDL_Rect *mPos;
-	int *mouseButton;
+	SDL_Rect *mPos, *mPosCam;
+	bool *leftDown, *leftReleased, *rightDown, *rightReleased;
 	map<int, TTF_Font*> fontManager, fontManagerBold;
 	bool gameRunning;
 

@@ -93,6 +93,9 @@
     <ClCompile Include="source\EntityFunctions.cpp">
       <Filter>Source Files\Game\Functions</Filter>
     </ClCompile>
+    <ClCompile Include="source\Enemy.cpp">
+      <Filter>Source Files\Entity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\Globals.h">
@@ -126,6 +129,9 @@
       <Filter>Header Files\Entity</Filter>
     </ClInclude>
     <ClInclude Include="header\Player.h">
+      <Filter>Header Files\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Enemy.h">
       <Filter>Header Files\Entity</Filter>
     </ClInclude>
   </ItemGroup>

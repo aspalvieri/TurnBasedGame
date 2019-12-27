@@ -19,6 +19,8 @@ public:
 	void setBounds(int *mapMaxX, int *mapMaxY, int *indexMaxX, int *indexMaxY, int width, int height);
 	//Can use setBounds instead 
 	void setCameraBounds(int width, int height);
+	void setCamera(SDL_Rect*); //For Player
+	void setCamera(); //For Enemies
 
 	//Entity Variables
 	bool isPlayer = false;

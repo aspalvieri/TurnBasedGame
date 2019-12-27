@@ -2,12 +2,32 @@
 
 void Game::handleEvents() {
 	capFPS.start();
+	//Reset button release pointers
+	*leftReleased = false;
+	*rightReleased = false;
+
 	while (SDL_PollEvent(&e) != 0) {
 		//Update the user's mouse properties
-		if (e.type == SDL_MOUSEMOTION || e.type == SDL_MOUSEBUTTONDOWN || e.type == SDL_MOUSEBUTTONUP) {
-			*mouseButton = SDL_GetMouseState(&mousePos->first, &mousePos->second);
-			mPos->x = mousePos->first;
-			mPos->y = mousePos->second;
+		if (e.type == SDL_MOUSEMOTION) {
+			SDL_GetMouseState(&mPos->x, &mPos->y);
+		}
+		if (e.type == SDL_MOUSEBUTTONDOWN) {
+			if (e.button.button == SDL_BUTTON_LEFT) {
+				*leftDown = true;
+			}
+			if (e.button.button == SDL_BUTTON_RIGHT) {
+				*rightDown = true;
+			}
+		}
+		if (e.type == SDL_MOUSEBUTTONUP) {
+			if (e.button.button == SDL_BUTTON_LEFT) {
+				*leftDown = false;
+				*leftReleased = true;
+			}
+			if (e.button.button == SDL_BUTTON_RIGHT) {
+				*rightDown = false;
+				*rightReleased = true;
+			}
 		}
 
 		////Global Events

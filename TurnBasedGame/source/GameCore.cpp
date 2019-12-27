@@ -34,9 +34,12 @@ Game::Game() {
 	gWindow = SDLR::gWindow;
 
 	camera = &SDLR::camera;
-	mousePos = &SDLR::mousePosition;
-	mouseButton = &SDLR::mouseButton;
+	leftDown = &SDLR::leftDown;
+	leftReleased = &SDLR::leftReleased;
+	rightDown = &SDLR::rightDown;
+	rightReleased = &SDLR::rightReleased;
 	mPos = &SDLR::mPos;
+	mPosCam = &SDLR::mPosCam;
 }
 
 Game::~Game() {

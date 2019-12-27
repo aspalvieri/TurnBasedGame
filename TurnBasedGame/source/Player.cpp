@@ -69,9 +69,3 @@ bool Player::canMove() {
 		return true;
 	return false;
 }
-
-void Player::setCamera(SDL_Rect *camBounds) {
-	this->camBounds = camBounds;
-	this->camera = &SDLR::camera;
-	Sprite::setCamera(true);
-}

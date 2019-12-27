@@ -115,6 +115,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="source\Enemy.cpp" />
     <ClCompile Include="source\Entity.cpp" />
     <ClCompile Include="source\EntityFunctions.cpp" />
     <ClCompile Include="source\GameCore.cpp" />
@@ -133,6 +134,7 @@
     <ClCompile Include="source\Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="header\Enemy.h" />
     <ClInclude Include="header\Entity.h" />
     <ClInclude Include="header\Game.h" />
     <ClInclude Include="header\Globals.h" />

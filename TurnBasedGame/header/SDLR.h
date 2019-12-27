@@ -19,17 +19,18 @@ struct SDLR
 	//Window pane
 	static SDL_Window* gWindow;
 
-	//User's mouse position
-	static pair<int, int> mousePosition;
-
-	//User's mouse button
-	static int mouseButton;
+	//User's mouse buttons
+	static bool leftDown;
+	static bool leftReleased;
+	static bool rightDown;
+	static bool rightReleased;
 
 	//Player's camera
 	static SDL_Rect camera;
 
 	//Mouse position as a box
 	static SDL_Rect mPos;
+	static SDL_Rect mPosCam; //Mouse position with camera added
 };
 
 #endif//SDLR_H
