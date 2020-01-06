@@ -2,6 +2,7 @@
 #define PLAYER_H
 
 #include "Entity.h"
+#include "Projectile.h"
 
 class Player : public Entity {
 public:

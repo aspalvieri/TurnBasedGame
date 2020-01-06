@@ -96,6 +96,9 @@
     <ClCompile Include="source\Enemy.cpp">
       <Filter>Source Files\Entity</Filter>
     </ClCompile>
+    <ClCompile Include="source\Projectile.cpp">
+      <Filter>Source Files\Entity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\Globals.h">
@@ -132,6 +135,9 @@
       <Filter>Header Files\Entity</Filter>
     </ClInclude>
     <ClInclude Include="header\Enemy.h">
+      <Filter>Header Files\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Projectile.h">
       <Filter>Header Files\Entity</Filter>
     </ClInclude>
   </ItemGroup>

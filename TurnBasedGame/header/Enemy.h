@@ -2,6 +2,7 @@
 #define ENEMY_H
 
 #include "Entity.h"
+#include "Projectile.h"
 
 class Enemy : public Entity {
 public:

@@ -2,6 +2,7 @@
 
 Enemy::Enemy() {
 	target = NULL;
+	alive = true;
 }
 
 Enemy::~Enemy() { }

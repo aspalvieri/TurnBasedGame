@@ -23,7 +23,7 @@ public:
 	void setCamera(); //For Enemies
 
 	//Entity Variables
-	bool isPlayer = false;
+	bool isPlayer = false, alive = false;
 	SDL_Rect *camera, *camBounds;
 	double health = 0, healthmax = 0;
 	double damagemin = 0, damagemax = 0;

@@ -7,6 +7,7 @@
 #include "Entity.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "Projectile.h"
 
 class Game {
 public:
@@ -61,6 +62,7 @@ private:
 	string currentScreen = "mainGame";
 	vector<Enemy> enemies; //All enemies stored inside this
 	double deltaX, deltaY, magnitude;
+	vector<Projectile> projectiles; //All bullets,arrows,etc...
 
 	//Enemies
 	Enemy testEnemy;

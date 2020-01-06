@@ -2,6 +2,7 @@
 
 Player::Player() {
 	isPlayer = true;
+	alive = true;
 }
 
 Player::~Player() { }

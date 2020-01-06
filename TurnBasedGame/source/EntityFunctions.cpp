@@ -58,8 +58,12 @@ void Game::updateEntity(Entity *ent) {
 void Game::chaseTarget(Enemy *ent) {
 	//Find target
 	if (ent->target == NULL) {
-		ent->xVel = 0;
-		ent->yVel = 0;
+		//Reset velocities
+		if (ent->xVel != 0 || ent->yVel != 0) {
+			ent->xVel = 0;
+			ent->yVel = 0;
+		}
+		//Find player
 		if (checkCollision(ent->camera, &player.getBox())) {
 			ent->target = &player;
 		}
