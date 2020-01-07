@@ -37,7 +37,6 @@ public:
 	void updateEntity(Entity *ent);
 	void chaseTarget(Enemy *ent);
 	bool checkAllCollision(Entity*);
-	void setTileProps(vector<int>, tuple<bool, bool, bool, bool, bool>);
 	//For shaders on maps
 	bool edgeTile(int, int);
 
@@ -50,6 +49,13 @@ public:
 	void mainGameEvents();
 	void mainGameBuild();
 	void mainGameDestroy();
+
+	/* First bool is collision
+	Second bool is if the tile can have shadows cast on it
+	Third bool is if the tile casts a shadow
+	Fourth bool is if it has an inner shadow
+	Fifth bool is if the tile requires the same tile to share inner shadows with*/
+	void setTileProps(vector<int>, tuple<bool, bool, bool, bool, bool>);
 
 	void limitFPS();
 
