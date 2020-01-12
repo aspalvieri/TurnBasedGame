@@ -56,7 +56,7 @@ public:
 	Fourth bool is if it has an inner shadow
 	Fifth bool is if the tile requires the same tile to share inner shadows with*/
 	void setTileProps(vector<int>, tuple<bool, bool, bool, bool, bool>);
-
+	
 	void limitFPS();
 
 private:

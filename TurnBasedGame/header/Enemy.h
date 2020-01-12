@@ -13,6 +13,7 @@ public:
 	bool canMove();
 
 	Entity *target;
+
 private:
 
 };

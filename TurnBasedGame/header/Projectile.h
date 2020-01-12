@@ -3,12 +3,13 @@
 
 #include "Entity.h"
 
-class Projectile {
+class Projectile : public CameraObj {
 public:
 	Projectile();
 	~Projectile();
 
 	Entity *sender = NULL;
+
 private:
 
 };

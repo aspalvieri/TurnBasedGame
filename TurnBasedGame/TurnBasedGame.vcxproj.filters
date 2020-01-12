@@ -43,6 +43,18 @@
     <Filter Include="Source Files\Game\Functions">
       <UniqueIdentifier>{3e57a2e9-752b-496b-afe5-b2d26ec9212f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Object">
+      <UniqueIdentifier>{84fef62b-0001-4fef-bb59-824192557103}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Object">
+      <UniqueIdentifier>{c576ebd2-383b-46bf-b865-857e8e7ce849}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Projectile">
+      <UniqueIdentifier>{59a9567f-85a1-47e2-9697-9ab7e3f5159e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Projectile">
+      <UniqueIdentifier>{a78a4f63-9d07-4f52-abfd-7b2a8dfd1bf0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
@@ -96,8 +108,14 @@
     <ClCompile Include="source\Enemy.cpp">
       <Filter>Source Files\Entity</Filter>
     </ClCompile>
+    <ClCompile Include="source\Object.cpp">
+      <Filter>Source Files\Object</Filter>
+    </ClCompile>
     <ClCompile Include="source\Projectile.cpp">
-      <Filter>Source Files\Entity</Filter>
+      <Filter>Source Files\Projectile</Filter>
+    </ClCompile>
+    <ClCompile Include="source\CameraObj.cpp">
+      <Filter>Source Files\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -137,8 +155,14 @@
     <ClInclude Include="header\Enemy.h">
       <Filter>Header Files\Entity</Filter>
     </ClInclude>
+    <ClInclude Include="header\Object.h">
+      <Filter>Header Files\Object</Filter>
+    </ClInclude>
     <ClInclude Include="header\Projectile.h">
-      <Filter>Header Files\Entity</Filter>
+      <Filter>Header Files\Projectile</Filter>
+    </ClInclude>
+    <ClInclude Include="header\CameraObj.h">
+      <Filter>Header Files\Object</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
