@@ -20,7 +20,8 @@ public:
 	void handleEvents();
 	void update();
 	void render();
-	void newText(string key, std::string text, TTF_Font* gFont, int x = 0, int y = 0, SDL_Color textColor = { 0, 0, 0 }, int wrapLength = SCREEN_WIDTH);
+	void newText(string key, string text, TTF_Font* gFont, int x = 0, int y = 0, SDL_Color textColor = { 0, 0, 0 }, int wrapLength = SCREEN_WIDTH);
+	void updateText(string key, string text);
 	void newImage(string key, std::string path, int x = 0, int y = 0);
 	void clearDynamicMap();
 
@@ -94,10 +95,14 @@ private:
 	unordered_map<string, StaticTexture> dynamicMap;
 
 	//Static variables
-	SDL_Rect *mPos, *mPosCam;
+	//Mouse position relative to the window
+	SDL_Rect *mPos;
+	//Mouse position relative to the game world
+	SDL_Rect *mPosCam;
 	bool *leftDown, *leftReleased, *rightDown, *rightReleased;
 	map<int, TTF_Font*> fontManager, fontManagerBold;
 	bool gameRunning;
+	RDevice rdevice;
 
 	//SDL variables
 	SDL_Event e;

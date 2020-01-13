@@ -121,6 +121,7 @@
     <ClCompile Include="source\EntityFunctions.cpp" />
     <ClCompile Include="source\GameCore.cpp" />
     <ClCompile Include="source\GameEvents.cpp" />
+    <ClCompile Include="source\mainGameCore.cpp" />
     <ClCompile Include="source\MapFunctions.cpp" />
     <ClCompile Include="source\GameUpdates.cpp" />
     <ClCompile Include="source\main.cpp" />

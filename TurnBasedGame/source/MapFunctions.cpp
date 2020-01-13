@@ -4,7 +4,7 @@
 Second bool is if the tile can have shadows cast on it
 Third bool is if the tile casts a shadow
 Fourth bool is if it has an inner shadow
-Fifth bool is if the tile requires the same tile to share inner shadows with*/
+Fifth bool is if the tile requires the same tile to share inner shadows with */
 void Game::setTileProps(vector<int> tiles, tuple<bool, bool, bool, bool, bool> properties) {
 	for (auto& i : tiles) {
 		tileClips[i].second = properties;
@@ -147,7 +147,7 @@ void Game::buildTiles(string path) {
 	indexMaxX = mapMaxX / TILE_SIZE;
 	indexMaxY = mapMaxY / TILE_SIZE;
 
-	/* //1500x1500 map with walls every 3x3 tiles
+	/* //1500x1500 map with 1x1 wall every 3x3 tiles
 	clearTiles();
 	for (y = 0; y < 1500; y++) {
 		for (x = 0; x < 1500; x++) {

@@ -28,9 +28,10 @@ struct SDLR
 	//Player's camera
 	static SDL_Rect camera;
 
-	//Mouse position as a box
+	//Mouse position relative to the window
 	static SDL_Rect mPos;
-	static SDL_Rect mPosCam; //Mouse position with camera added
+	//Mouse position relative to the game world
+	static SDL_Rect mPosCam; 
 };
 
 #endif//SDLR_H

@@ -70,3 +70,7 @@ bool Player::canMove() {
 		return true;
 	return false;
 }
+
+void Player::onDeath() {
+	cout << "Player: I was killed.\n";
+}

@@ -9,9 +9,13 @@ public:
 	Player();
 	~Player();
 
-	void handleEvents(SDL_Event *e);
+	//Polymorphism from Entity
 	void update();
 	bool canMove();
+	void onDeath();
+
+	//Player functions
+	void handleEvents(SDL_Event *e);
 	
 private:
 	bool up = false, down = false, right = false, left = false;

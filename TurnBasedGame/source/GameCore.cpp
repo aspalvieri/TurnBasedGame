@@ -69,10 +69,17 @@ void Game::buildFontManager() {
 	}
 }
 
-void Game::newText(string key, std::string text, TTF_Font * gFont, int x, int y, SDL_Color textColor, int wrapLength) {
+void Game::newText(string key, string text, TTF_Font * gFont, int x, int y, SDL_Color textColor, int wrapLength) {
 	dynamicMap[key].loadFont(text, textColor, gFont, wrapLength);
 	dynamicMap[key].x = x;
 	dynamicMap[key].y = y;
+	dynamicMap[key].font = gFont;
+	dynamicMap[key].textColor = textColor;
+	dynamicMap[key].wrapLength = wrapLength;
+}
+
+void Game::updateText(string key, string text) {
+	dynamicMap[key].loadFont(text, dynamicMap[key].textColor, dynamicMap[key].font, dynamicMap[key].wrapLength);
 }
 
 void Game::newImage(string key, std::string path, int x, int y) {

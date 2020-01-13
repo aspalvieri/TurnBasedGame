@@ -46,6 +46,7 @@ void Game::handleEvents() {
 			case SDLK_ESCAPE:
 				gameRunning = false;
 				cout << "Exited game.\n";
+				return;
 				break;
 			default:
 				break;

@@ -45,6 +45,9 @@ struct StaticTexture : public Texture {
 	void render(SDL_Rect* = NULL, double = 0.0, SDL_Point* = NULL, SDL_RendererFlip = SDL_FLIP_NONE);
 
 	int x = 0, y = 0;
+	TTF_Font* font = NULL;
+	SDL_Color textColor = { 0, 0, 0 };
+	int wrapLength = 0;
 };
 
 #endif//TEXTURE_H

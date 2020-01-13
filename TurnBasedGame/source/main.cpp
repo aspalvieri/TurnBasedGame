@@ -4,7 +4,7 @@
 SDLR sdlr;
 
 //Declare static variables for Window, Renderer, and Mouse properties
-SDL_Window* SDLR::gWindow = SDL_CreateWindow("Turn-Based Game", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+SDL_Window* SDLR::gWindow = SDL_CreateWindow("Another RPG", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 SDL_Renderer* SDLR::gRenderer = SDL_CreateRenderer(SDLR::gWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 bool SDLR::leftDown = false;
 bool SDLR::leftReleased = false;
