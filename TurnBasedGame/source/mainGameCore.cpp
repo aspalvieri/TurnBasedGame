@@ -28,6 +28,8 @@ void Game::mainGameBuild() {
 	newText("playerLevel", "Level: " + to_string(player.level), fontManager[16], 0, 32);
 	newText("playerExp", "Exp: " + to_string(player.exp) + "/" + to_string(player.maxExp), fontManager[16], 0, 48);
 	newText("playerGold", "Gold: " + to_string(player.gold), fontManager[16], 0, 64);
+	newText("playerTargetName", " ", fontManagerBold[24], 0, 0, { 255, 255, 255 });
+	newText("playerTargetLevel", " ", fontManager[24], 0, 0, { 192, 192, 192 });
 
 	//TestEnemy
 	testEnemy.loadSpriteImage("bin/images/testenemy.png")

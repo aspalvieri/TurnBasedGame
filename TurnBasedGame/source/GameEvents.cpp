@@ -30,7 +30,8 @@ void Game::handleEvents() {
 			}
 		}
 
-		////Global Events
+
+		////  [BEGIN] GLOBAL UPDATES
 
 		//User presses exit button (top-right)
 		if (e.type == SDL_QUIT) {
@@ -67,6 +68,9 @@ void Game::handleEvents() {
 				break;
 			}
 		}
+
+		////  [END] GLOBAL UPDATES
+
 
 		//Handle events for current game screen
 		routeManager(2);

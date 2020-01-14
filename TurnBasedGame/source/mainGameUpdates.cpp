@@ -22,6 +22,15 @@ void Game::mainGameUpdate() {
 		}
 	}
 
+	//Mock hover target
+	player.target = NULL;
+	for (unsigned int i = 0; i < enemies.size(); i++) {
+		if (checkCollision(mPosCam, &enemies[i].getBox())) {
+			player.changeTarget((Entity*)&enemies[i]);
+		}
+	}
+	//Mock hover target
+
 	////  [END] CORE GAME UPDATES
 
 	//Update player variables on UI
@@ -36,6 +45,13 @@ void Game::mainGameUpdate() {
 	if (player.goldChanged) {
 		player.goldChanged = false;
 		updateText("playerGold", "Gold: " + to_string(player.gold));
+	}
+	if (player.targetChanged && player.target != NULL) {
+		player.targetChanged = false;
+		updateText("playerTargetName", player.target->name);
+		updateText("playerTargetName", HALF_WIDTH - (int)(dynamicMap["playerTargetName"].width / 2.0), 0);
+		updateText("playerTargetLevel", "Level: " + to_string(player.target->level));
+		updateText("playerTargetLevel", HALF_WIDTH - (int)(dynamicMap["playerTargetLevel"].width / 2.0), 24);
 	}
 }
 
@@ -75,4 +91,8 @@ void Game::mainGameRender() {
 	dynamicMap["playerLevel"].render();
 	dynamicMap["playerExp"].render();
 	dynamicMap["playerGold"].render();
+	if (player.target != NULL) {
+		dynamicMap["playerTargetName"].render();
+		dynamicMap["playerTargetLevel"].render();
+	}
 }

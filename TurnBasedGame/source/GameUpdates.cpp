@@ -3,7 +3,7 @@
 void Game::update() {
 	//Update FPS and text
 	averageFPS = countedFrames / (FPS.getTicks() / 1000.f);
-	fpsText.loadFont(to_string(averageFPS), SDL_Color{ 0,0,0 }, fontManager[16], SCREEN_WIDTH);
+	fpsText.loadFont("FPS: " + to_string((int)round(averageFPS)), SDL_Color{ 0,0,0 }, fontManager[16], SCREEN_WIDTH);
 
 	//Handle updates for the current game screen
 	routeManager(1);

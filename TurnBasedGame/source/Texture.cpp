@@ -59,6 +59,12 @@ bool Texture::loadFont(std::string textureText, SDL_Color textColor, TTF_Font * 
 	//Get rid of preexisting texture
 	free();
 
+	// README IF CRASH
+	//
+	// if textureText is blank string, loading font will crash
+	//
+	// README IF CRASH
+
 	//Render text surface
 	SDL_Surface* textSurface = TTF_RenderText_Blended_Wrapped(gFont, textureText.c_str(), textColor, wrapLength);
 

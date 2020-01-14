@@ -155,9 +155,9 @@ void Game::buildTiles(string path) {
 			int iswall = 0;
 			if (x != 0 && y != 0 && x % 3 == 0 && y % 3 == 0) {
 				flipper = true;
-				iswall = 5;
+				iswall = 7;
 			}
-			tiles.push_back(Tile(x * TILE_SIZE, y * TILE_SIZE, &tileClips[iswall].first, flipper, !flipper, flipper, flipper, &dynamicMap["tileset"]));
+			tiles.push_back(Tile(x * TILE_SIZE, y * TILE_SIZE, &tileClips[iswall].first, x+y, flipper, !flipper, flipper, flipper, flipper, &dynamicMap["tileset"]));
 		}
 	}
 	mapMaxX = 1500 * TILE_SIZE;

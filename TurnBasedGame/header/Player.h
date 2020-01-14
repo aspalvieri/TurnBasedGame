@@ -16,6 +16,13 @@ public:
 
 	//Player functions
 	void handleEvents(SDL_Event *e);
+
+	//Player variables
+	Entity *target = NULL;
+
+	//Update variables
+	void changeTarget(Entity *tar = NULL);
+	bool targetChanged = false;
 	
 private:
 	bool up = false, down = false, right = false, left = false;

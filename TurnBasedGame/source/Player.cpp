@@ -47,6 +47,12 @@ void Player::handleEvents(SDL_Event * e) {
 	}
 }
 
+void Player::changeTarget(Entity *tar)
+{
+	target = tar;
+	targetChanged = true;
+}
+
 void Player::update() {
 	Entity::update();
 	xVel = speed * (right - left);

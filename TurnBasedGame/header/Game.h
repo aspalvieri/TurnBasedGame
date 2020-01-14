@@ -22,6 +22,8 @@ public:
 	void render();
 	void newText(string key, string text, TTF_Font* gFont, int x = 0, int y = 0, SDL_Color textColor = { 0, 0, 0 }, int wrapLength = SCREEN_WIDTH);
 	void updateText(string key, string text);
+	void updateText(string key, int x, int y);
+	void updateText(string key, string text, int x, int y);
 	void newImage(string key, std::string path, int x = 0, int y = 0);
 	void clearDynamicMap();
 

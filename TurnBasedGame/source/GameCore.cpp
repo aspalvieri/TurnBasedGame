@@ -81,6 +81,15 @@ void Game::newText(string key, string text, TTF_Font * gFont, int x, int y, SDL_
 void Game::updateText(string key, string text) {
 	dynamicMap[key].loadFont(text, dynamicMap[key].textColor, dynamicMap[key].font, dynamicMap[key].wrapLength);
 }
+void Game::updateText(string key, int x, int y) {
+	dynamicMap[key].x = x;
+	dynamicMap[key].y = y;
+}
+void Game::updateText(string key, string text, int x, int y) {
+	dynamicMap[key].loadFont(text, dynamicMap[key].textColor, dynamicMap[key].font, dynamicMap[key].wrapLength);
+	dynamicMap[key].x = x;
+	dynamicMap[key].y = y;
+}
 
 void Game::newImage(string key, std::string path, int x, int y) {
 	dynamicMap[key].loadImage(path);

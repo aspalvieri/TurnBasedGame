@@ -4,7 +4,9 @@
 #define DISPLAY_DEBUG 1
 
 constexpr auto SCREEN_WIDTH = 1280;
+constexpr auto HALF_WIDTH = 640;
 constexpr auto SCREEN_HEIGHT = 720;
+constexpr auto HALF_HEIGHT = 360;
 constexpr auto SCREEN_FPS = 60;
 constexpr auto SCREEN_TICK_PER_FRAME = (1000 / SCREEN_FPS);
 
