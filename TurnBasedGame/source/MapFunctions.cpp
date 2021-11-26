@@ -1,6 +1,7 @@
 #include "../header/Game.h"
 
-/* First bool is collision
+/* Tile Properties List:
+First bool is collision
 Second bool is if the tile can have shadows cast on it
 Third bool is if the tile casts a shadow
 Fourth bool is if it has an inner shadow
@@ -88,8 +89,12 @@ void Game::buildTileset() {
 		{192, 32, TILE_SIZE, TILE_SIZE},
 		{192, 64, TILE_SIZE, TILE_SIZE},
 		{192, 96, TILE_SIZE, TILE_SIZE},
-		{192, 128, TILE_SIZE, TILE_SIZE},
-		{192, 160, TILE_SIZE, TILE_SIZE},
+		{160, 128, TILE_SIZE, TILE_SIZE},
+		{160, 160, TILE_SIZE, TILE_SIZE},
+
+		//Lighting Square
+		//52
+		{192, 128, HALF_TILE_SIZE, HALF_TILE_SIZE}
 	};
 }
 
@@ -119,8 +124,16 @@ bool Game::edgeTile(int x, int yIndex) {
 	return false;
 }
 
-void Game::buildTiles(string path) {
+void Game::buildMap(string path) {
 	clearTiles();
+	buildTiles(path);
+	buildShaders();
+#if DISPLAY_DEBUG
+	cout << "Built Map: " << path << endl;
+#endif
+}
+
+void Game::buildTiles(string path) {
 	fstream RAF;
 	RAF.open(path.c_str(), ios::in, ios::binary);
 	if (!RAF.is_open()) {
@@ -170,34 +183,42 @@ void Game::buildTiles(string path) {
 	cout << "Map max X: " << mapMaxX << ". Map max Y: " << mapMaxY << ".\n";
 	cout << "Index max X: " << indexMaxX << ". Index max Y: " << indexMaxY << ".\n";
 #endif
+}
+
+void Game::buildShaders() {
 	//Add shaders to tiles
 	for (int y = 0; y < indexMaxY; y++) {
 		int yIndex = y * indexMaxX;
 		int ym1 = yIndex - (1 * indexMaxX); //y minus 1
 		int yp1 = yIndex + (1 * indexMaxX); //y plus 1
 		for (int x = 0; x < indexMaxX; x++) {
+			//Set lighting square
+			tiles[x + yIndex].black[0] = Shader(x * TILE_SIZE, y * TILE_SIZE, &shaderClips[52], &dynamicMap["shaders"], true, false, 224);
+			tiles[x + yIndex].black[1] = Shader((x * TILE_SIZE) + HALF_TILE_SIZE, y * TILE_SIZE, &shaderClips[52], &dynamicMap["shaders"], true, false, 224);
+			tiles[x + yIndex].black[2] = Shader(x * TILE_SIZE, (y * TILE_SIZE) + HALF_TILE_SIZE, &shaderClips[52], &dynamicMap["shaders"], true, false, 224);
+			tiles[x + yIndex].black[3] = Shader((x * TILE_SIZE) + HALF_TILE_SIZE, (y * TILE_SIZE) + HALF_TILE_SIZE, &shaderClips[52], &dynamicMap["shaders"], true, false, 224);
 			//Ensure it's not an edge tile
 			if (!edgeTile(x, yIndex)) {
 				//Casting shadows onto tiles
 				if (tiles[x + yIndex].getCastsShadow()) {
 					//No tile above the tile, and no tile to the left of it
 					if (tiles[x + ym1].getTakesShadow() && !tiles[(x - 1) + yIndex].getCastsShadow())
-						tiles[x + ym1].shadow = Shader(x * TILE_SIZE, (y - 1) * TILE_SIZE, &shaderClips[1], &dynamicMap["shaders"]);
+						tiles[x + ym1].shadow = Shader(x * TILE_SIZE, (y - 1) * TILE_SIZE, &shaderClips[1], &dynamicMap["shaders"], true, true);
 					//No tile above, and yes tile to the left
 					if (tiles[x + ym1].getTakesShadow() && tiles[(x - 1) + yIndex].getCastsShadow())
-						tiles[x + ym1].shadow = Shader(x * TILE_SIZE, (y - 1) * TILE_SIZE, &shaderClips[0], &dynamicMap["shaders"]);
+						tiles[x + ym1].shadow = Shader(x * TILE_SIZE, (y - 1) * TILE_SIZE, &shaderClips[0], &dynamicMap["shaders"], true, true);
 					//No tile above, no tile to right
 					if (tiles[x + ym1].getTakesShadow() && tiles[(x + 1) + yIndex].getTakesShadow() && tiles[(x + 1) + ym1].getTakesShadow())
-						tiles[(x + 1) + ym1].shadow = Shader((x + 1) * TILE_SIZE, (y - 1) * TILE_SIZE, &shaderClips[2], &dynamicMap["shaders"]);
+						tiles[(x + 1) + ym1].shadow = Shader((x + 1) * TILE_SIZE, (y - 1) * TILE_SIZE, &shaderClips[2], &dynamicMap["shaders"], true, true);
 					//No tile the right of the tile, and no tile below it
 					if (tiles[(x + 1) + yIndex].getTakesShadow() && !tiles[x + yp1].getCastsShadow())
-						tiles[(x + 1) + yIndex].shadow = Shader((x + 1) * TILE_SIZE, y * TILE_SIZE, &shaderClips[4], &dynamicMap["shaders"]);
+						tiles[(x + 1) + yIndex].shadow = Shader((x + 1) * TILE_SIZE, y * TILE_SIZE, &shaderClips[4], &dynamicMap["shaders"], true, true);
 					//To the right of the tile, and yes tile below it
 					if (tiles[(x + 1) + yIndex].getTakesShadow() && tiles[x + yp1].getCastsShadow())
-						tiles[(x + 1) + yIndex].shadow = Shader((x + 1) * TILE_SIZE, y * TILE_SIZE, &shaderClips[3], &dynamicMap["shaders"]);
+						tiles[(x + 1) + yIndex].shadow = Shader((x + 1) * TILE_SIZE, y * TILE_SIZE, &shaderClips[3], &dynamicMap["shaders"], true, true);
 					//No tile above, Tile top-left
 					if (tiles[x + ym1].getTakesShadow() && tiles[(x - 1) + ym1].getCastsShadow())
-						tiles[x + ym1].shadow = Shader(x * TILE_SIZE, (y - 1) * TILE_SIZE, &shaderClips[5], &dynamicMap["shaders"]);
+						tiles[x + ym1].shadow = Shader(x * TILE_SIZE, (y - 1) * TILE_SIZE, &shaderClips[5], &dynamicMap["shaders"], true, true);
 				}
 				//Inner shadow if tile has one
 				if (tiles[x + yIndex].getHasInner()) {

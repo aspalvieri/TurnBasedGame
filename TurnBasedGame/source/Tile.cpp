@@ -122,7 +122,7 @@ Shader::Shader()
 {
 }
 
-Shader::Shader(int x, int y, SDL_Rect * clip, Texture * tilesheet)
+Shader::Shader(int x, int y, SDL_Rect * clip, Texture * tilesheet, bool useAlpha, bool inverseShader, Uint8 maxAlpha)
 {
 	box.x = x;
 	box.y = y;
@@ -132,6 +132,9 @@ Shader::Shader(int x, int y, SDL_Rect * clip, Texture * tilesheet)
 	texture = tilesheet;
 	texture->camera = true;
 	set = true;
+	this->useAlpha = useAlpha;
+	this->inverseShader = inverseShader;
+	this->maxAlpha = maxAlpha;
 }
 
 Shader::~Shader()
@@ -140,6 +143,65 @@ Shader::~Shader()
 
 void Shader::render()
 {
-	if (set)
+	if (set) {
+		if (useAlpha)
+			texture->setAlpha((inverseShader) ? maxAlpha - alpha : alpha);
 		texture->render(box.x, box.y, clip);
+		if (useAlpha)
+			texture->setAlpha(255);
+	}
+}
+
+Light::Light()
+{
+}
+
+Light::Light(int v1, int v2, double dis, double str)
+{
+	x = v1;
+	y = v2;
+	distance = dis;
+	strength = str;
+	buildBounds();
+}
+
+void Light::buildBounds()
+{
+	int holdv = (distance * 10.0);
+	holdv = ((holdv % 2 == 0) ? holdv + 1 : holdv) + 1;
+	bbox = { (int)x - (holdv / 2) * TILE_SIZE, (int)y - (holdv / 2) * TILE_SIZE, (holdv)* TILE_SIZE, (holdv)* TILE_SIZE };
+	bbound = holdv;
+}
+
+void Light::setPosition(int x, int y)
+{
+	this->x = x;
+	this->y = y;
+	buildBounds();
+}
+
+void Shader::calculateLight(vector<Light> &lights, Uint8 &maxAlpha, bool ignoreLights)
+{
+	int maxA = min(maxAlpha, this->maxAlpha);
+	int currMax = maxA;
+	if (!ignoreLights) {
+		for (unsigned int i = 0; i < lights.size(); i++)
+		{
+			if (checkCollision(&box, &lights[i].bbox))
+			{
+				double diffx = abs((box.x + QUARTER_TILE_SIZE) - lights[i].x);
+				double diffy = abs((box.y + QUARTER_TILE_SIZE) - lights[i].y);
+				double diff = sqrt((diffx*diffx) + (diffy*diffy));
+				double amt = min(diff / lights[i].strength, (double)maxA);
+				if (amt < maxA)
+				{
+					amt = amt / (lights[i].strength - min(max((diff / 250), 0.0), lights[i].strength));
+					if (amt > maxA)
+						amt = maxA;
+				}
+				currMax = min((int)amt, currMax);
+			}
+		}
+	}
+	alpha = currMax;
 }

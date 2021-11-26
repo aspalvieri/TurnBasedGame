@@ -12,8 +12,12 @@ public:
 	virtual void update();
 	virtual bool canMove();
 	virtual void onDeath();
+	virtual void takeDamage(double dam, int lvl);
+	virtual bool forceMove(double x, double y);
 
 	//Entity Variables
+	static int globalID;
+	int ID;
 	bool isPlayer = false, alive = false;
 	string name = "";
 	double health = 0, maxHealth = 0;
@@ -27,6 +31,7 @@ public:
 	int armor = 0;
 
 	//Update Variables
+	bool healthChanged = false;
 	void changeGold(int);
 	bool goldChanged = false;
 	void changeExp(int);

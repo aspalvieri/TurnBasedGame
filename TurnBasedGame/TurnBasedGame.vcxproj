@@ -119,6 +119,7 @@
     <ClCompile Include="source\Enemy.cpp" />
     <ClCompile Include="source\Entity.cpp" />
     <ClCompile Include="source\EntityFunctions.cpp" />
+    <ClCompile Include="source\FloatingText.cpp" />
     <ClCompile Include="source\GameCore.cpp" />
     <ClCompile Include="source\GameEvents.cpp" />
     <ClCompile Include="source\mainGameCore.cpp" />
@@ -141,6 +142,7 @@
     <ClInclude Include="header\CameraObj.h" />
     <ClInclude Include="header\Enemy.h" />
     <ClInclude Include="header\Entity.h" />
+    <ClInclude Include="header\FloatingText.h" />
     <ClInclude Include="header\Game.h" />
     <ClInclude Include="header\Globals.h" />
     <ClInclude Include="header\Includes.h" />

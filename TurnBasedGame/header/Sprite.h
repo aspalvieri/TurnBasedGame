@@ -125,10 +125,4 @@ private:
 	std::string location;
 };
 
-bool checkCollision(SDL_Rect *, SDL_Rect *);
-
-//bool checkCollision(Circle &, SDL_Rect &);
-
-bool isEqualBox(SDL_Rect *, SDL_Rect *);
-
 #endif // SPRITE_H

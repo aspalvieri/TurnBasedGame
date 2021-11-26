@@ -14,6 +14,15 @@ SDL_Rect SDLR::camera = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 SDL_Rect SDLR::mPos = { 0, 0, 1, 1 };
 SDL_Rect SDLR::mPosCam = { 0, 0, 1, 1 };
 RDevice SDLR::rand;
+int Entity::globalID = 0;
+
+int TimeClock::hour = 21; //default 8, 21 for night-time
+double TimeClock::minute = 0;
+double TimeClock::speed = 0.1; //default 0.1
+Uint8 TimeClock::maxAlpha = 0;
+double TimeClock::alpha = 0;
+int TimeClock::maxDay = 0;
+int TimeClock::maxNight = 255;
 
 //Static managers
 vector<Sprite*> Sprite::spriteManager;
@@ -31,7 +40,7 @@ int main(int argc, char* argv[]) {
 	}
 
 	//Destroys current screen before closing program
-	game.routeManager(4);
+	//game.routeManager(4);
 
 	return 0;
 }

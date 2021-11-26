@@ -37,7 +37,7 @@ private:
 	SDL_Renderer *gRenderer = NULL;
 };
 
-//Just a regular texture, but with x/y coordinates
+//Just a regular texture, but with changeable variables
 struct StaticTexture : public Texture {
 	StaticTexture();
 	~StaticTexture();
@@ -49,5 +49,11 @@ struct StaticTexture : public Texture {
 	SDL_Color textColor = { 0, 0, 0 };
 	int wrapLength = 0;
 };
+
+bool checkCollision(SDL_Rect *, SDL_Rect *);
+
+//bool checkCollision(Circle &, SDL_Rect &);
+
+bool isEqualBox(SDL_Rect *, SDL_Rect *);
 
 #endif//TEXTURE_H

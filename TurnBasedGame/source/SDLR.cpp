@@ -11,8 +11,8 @@ SDLR::SDLR()
 		cout << "Initialized TTF\n";
 
 	//Set display hint and render draw color
-	if (SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1"))
-		cout << "Set Hint Quality to Linear\n";
+	if (SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "0"))
+		cout << "Set Hint Quality to Nearest Pixel\n";
 	if (SDL_SetHint(SDL_HINT_RENDER_OPENGL_SHADERS, "1"))
 		cout << "Enabled OpenGL Shaders\n";
 }

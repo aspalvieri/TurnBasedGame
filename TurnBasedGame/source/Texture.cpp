@@ -134,3 +134,135 @@ void Texture::setAlpha(Uint8 a)
 {
 	SDL_SetTextureAlphaMod(texture, a);
 }
+
+
+/*
+bool checkCollision(SDL_Rect *A, SDL_Rect *B)
+{
+	//The sides of the rectangles
+	int leftA, leftB;
+	int rightA, rightB;
+	int topA, topB;
+	int bottomA, bottomB;
+
+	//Calculate the sides of rect A
+	leftA = A->x;
+	rightA = A->x + A->w;
+	topA = A->y;
+	bottomA = A->y + A->h;
+
+	//Calculate the sides of rect B
+	leftB = B->x;
+	rightB = B->x + B->w;
+	topB = B->y;
+	bottomB = B->y + B->h;
+
+	//If any of the sides from A are outside of B
+	if (bottomA <= topB)
+	{
+		return false;
+	}
+
+	if (topA >= bottomB)
+	{
+		return false;
+	}
+
+	if (rightA <= leftB)
+	{
+		return false;
+	}
+
+	if (leftA >= rightB)
+	{
+		return false;
+	}
+
+	//If none of the sides from A are outside B
+	return true;
+}
+*/
+
+//Attempted to make it cleaner
+bool checkCollision(SDL_Rect *A, SDL_Rect *B)
+{
+	//If any of the sides from A are outside of B
+	if ((A->y + A->h) <= B->y)
+	{
+		return false;
+	}
+
+	if (A->y >= (B->y + B->h))
+	{
+		return false;
+	}
+
+	if ((A->x + A->w) <= B->x)
+	{
+		return false;
+	}
+
+	if (A->x >= (B->x + B->w))
+	{
+		return false;
+	}
+
+	//If none of the sides from A are outside B
+	return true;
+}
+
+double distanceCheck(int &x1, int &y1, int &x2, int &y2)
+{
+	int deltaX = x2 - x1;
+	int deltaY = y2 - y1;
+	return deltaX * deltaX + deltaY * deltaY;
+}
+
+/*
+bool checkCollision(Circle &a, SDL_Rect &b)
+{
+	int cX, cY;
+
+	//Find closest x offset
+	if (a.x < b.x)
+	{
+		cX = b.x;
+	}
+	else if (a.x > b.x + b.w)
+	{
+		cX = b.x + b.w;
+	}
+	else
+	{
+		cX = a.x;
+	}
+
+	//Find closest y offset
+	if (a.y < b.y)
+	{
+		cY = b.y;
+	}
+	else if (a.y > b.y + b.h)
+	{
+		cY = b.y + b.h;
+	}
+	else
+	{
+		cY = a.y;
+	}
+
+	//If the closest point is inside the circle
+	if (distanceCheck(a.x, a.y, cX, cY) < a.r * a.r)
+	{
+		return true;
+	}
+
+	return false;
+}
+*/
+
+bool isEqualBox(SDL_Rect *a, SDL_Rect *b) {
+	if (a->x == b->x && a->y == b->y && a->w == b->w && a->h == b->h)
+		return true;
+	return false;
+}

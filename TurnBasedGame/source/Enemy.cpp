@@ -9,11 +9,21 @@ Enemy::~Enemy() { }
 void Enemy::update()
 {
 	Entity::update();
+
 	//Animations
 	if (canMove())
 		Sprite::setAnimationRaw("Moving");
 	else
 		Sprite::setAnimationRaw("Idle");
+
+	//Recently hit timeout
+	if (recentlyHit) {
+		recentlyHitTimer--;
+		if (recentlyHitTimer <= 0 || recentlyHitID == -1) {
+			recentlyHit = false;
+			recentlyHitID = -1;
+		}
+	}
 }
 
 bool Enemy::canMove()
@@ -24,9 +34,19 @@ bool Enemy::canMove()
 }
 
 void Enemy::onDeath() {
-	cout << "Enemy: I was killed.\n";
-	playerPtr->changeGold(SDLR::rand.randomInt(goldRewardMin, goldRewardMax));
-	playerPtr->changeExp(SDLR::rand.randomInt(expRewardMin, expRewardMax));
+#if DISPLAY_DEBUG
+	cout << "Enemy: I was killed. ID: " << ID << "\n";
+#endif
+	goldReward = SDLR::rand.randomInt(goldRewardMin, goldRewardMax);
+	expReward = SDLR::rand.randomInt(expRewardMin, expRewardMax);
+	playerPtr->changeGold(goldReward);
+	playerPtr->changeExp(expReward);
+}
+
+void Enemy::takeDamage(double dam, int lvl) {
+	Entity::takeDamage(dam, lvl);
+	recentlyHit = true;
+	recentlyHitTimer = RECENTLY_HIT_TIMEOUT;
 }
 
 Enemy& Enemy::setGoldReward(int min, int max)
@@ -46,6 +66,12 @@ Enemy& Enemy::setExpReward(int min, int max)
 Enemy & Enemy::setPlayerPtr(Entity * ptr)
 {
 	playerPtr = ptr;
+	return *this;
+}
+
+Enemy & Enemy::setProjectileMap(unordered_map<string, Projectile> * ptr)
+{
+	projectileMap = ptr;
 	return *this;
 }
 

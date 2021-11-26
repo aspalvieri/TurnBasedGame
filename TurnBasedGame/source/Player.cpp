@@ -47,10 +47,10 @@ void Player::handleEvents(SDL_Event * e) {
 	}
 }
 
-void Player::changeTarget(Entity *tar)
+Player & Player::setProjectileMap(unordered_map<string, Projectile> * ptr)
 {
-	target = tar;
-	targetChanged = true;
+	projectileMap = ptr;
+	return *this;
 }
 
 void Player::update() {
@@ -69,6 +69,16 @@ void Player::update() {
 		Sprite::setAnimationRaw("Moving");
 	else
 		Sprite::setAnimationRaw("Idle");
+
+	//Recently hit timeout
+	if (recentlyHitTarget) {
+		recentlyHitTargetTimer--;
+		if (recentlyHitTargetTimer <= 0 || (hitTarget && !hitTarget->alive) || !hitTarget) {
+			recentlyHitTarget = false;
+			recentlyHitTargetTimer = 0;
+			hitTarget = NULL;
+		}
+	}
 }
 
 bool Player::canMove() {

@@ -1,6 +1,6 @@
 #include "../header/Game.h"
 
-// 0 = Render,,, 1 = Update,,, 2 = Events,,, 3 = Build,,, 4 = Destory
+// 0 = Render,,, 1 = Update,,, 2 = Events
 void Game::routeManager(int route) {
 	// Render
 	if (route == 0) {
@@ -17,15 +17,9 @@ void Game::routeManager(int route) {
 		if (currentScreen == "mainGame")
 			mainGameEvents();
 	}
-	// Build
-	else if (route == 3) {
-		if (currentScreen == "mainGame")
-			mainGameBuild();
-	}
-	// Destroy
-	else if (route == 4) {
-		if (currentScreen == "mainGame")
-			mainGameDestroy();
+	// Error
+	else {
+		cout << "ERROR: Route '" << route << "' not found.\n";
 	}
 }
 
@@ -43,16 +37,19 @@ Game::Game() {
 }
 
 Game::~Game() {
-
+	mainGameDestroy();
 }
 
 void Game::initialize() {
 	buildFontManager();
 	SDL_SetRenderDrawColor(gRenderer, 0, 0, 0, 0xFF);
+	SDL_SetRenderDrawBlendMode(gRenderer, SDL_BLENDMODE_BLEND);
 	srand((unsigned)time(0));
 	gameRunning = true;
 	FPS.start();
-	routeManager(3);
+	//routeManager(3);
+
+	mainGameBuild();
 }
 
 bool Game::running() {
@@ -86,12 +83,11 @@ void Game::updateText(string key, int x, int y) {
 	dynamicMap[key].y = y;
 }
 void Game::updateText(string key, string text, int x, int y) {
-	dynamicMap[key].loadFont(text, dynamicMap[key].textColor, dynamicMap[key].font, dynamicMap[key].wrapLength);
-	dynamicMap[key].x = x;
-	dynamicMap[key].y = y;
+	updateText(key, text);
+	updateText(key, x, y);
 }
 
-void Game::newImage(string key, std::string path, int x, int y) {
+void Game::newImage(string key, string path, int x, int y) {
 	dynamicMap[key].loadImage(path);
 	dynamicMap[key].x = x;
 	dynamicMap[key].y = y;
@@ -102,4 +98,18 @@ void Game::clearDynamicMap() {
 		line.second.free();
 	}
 	dynamicMap.clear();
+}
+
+void Game::clearMapKey(string key) {
+	if (dynamicMap.find(key) != dynamicMap.end()) {
+		dynamicMap[key].free();
+		dynamicMap.erase(key);
+	}
+}
+
+//Rounds the variable to the given decimal places
+string Game::roundTo(double var, int dec) {
+	stringstream ss;
+	ss << fixed << setprecision(dec) << var;
+	return ss.str();
 }

@@ -16,13 +16,16 @@ public:
 
 	//Player functions
 	void handleEvents(SDL_Event *e);
+	Player& setProjectileMap(unordered_map<string, Projectile> *ptr);
 
 	//Player variables
-	Entity *target = NULL;
+	Entity *hitTarget = NULL, *mouseTarget = NULL, *target = NULL;
+	unordered_map<string, Projectile> *projectileMap = NULL;
+	vector<Projectile> *projectiles = NULL;
 
 	//Update variables
-	void changeTarget(Entity *tar = NULL);
-	bool targetChanged = false;
+	bool recentlyHitTarget = false;
+	int recentlyHitTargetTimer = 0;
 	
 private:
 	bool up = false, down = false, right = false, left = false;

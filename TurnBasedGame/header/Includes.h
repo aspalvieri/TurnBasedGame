@@ -7,7 +7,7 @@
 #include <SDL_mixer.h>
 
 #include <iostream>
-#include <string.h>
+#include <string>
 #include <sstream>
 #include <time.h>
 #include <fstream>
