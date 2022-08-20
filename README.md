@@ -1,4 +1,4 @@
-## Required Libraries
+### Required Libraries
 ```
 SDL2 (SDL.h)
 SDL2_image (SDL_image.h)
@@ -6,7 +6,7 @@ SDL2_mixer (SDL_mixer.h)
 SDL2_ttf (SDL_ttf.h)
 ```
 
-## Additional Linker Dependencies
+### Additional Linker Dependencies
 ```
 SDL2.lib
 SDL2main.lib
@@ -15,7 +15,7 @@ SDL2_mixer.lib
 SDL2_ttf.libg
 ```
 
-## Required DLL Files
+### Required DLL Files
 ```
 libfreetype-6.dll
 libmpg123-0.dll
