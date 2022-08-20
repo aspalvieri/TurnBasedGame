@@ -16,13 +16,13 @@ SDL_Rect SDLR::mPosCam = { 0, 0, 1, 1 };
 RDevice SDLR::rand;
 int Entity::globalID = 0;
 
-int TimeClock::hour = 21; //default 8, 21 for night-time
+int TimeClock::hour = 8; //default 8, 21 for night-time
 double TimeClock::minute = 0;
 double TimeClock::speed = 0.1; //default 0.1
 Uint8 TimeClock::maxAlpha = 0;
 double TimeClock::alpha = 0;
 int TimeClock::maxDay = 0;
-int TimeClock::maxNight = 255;
+int TimeClock::maxNight = 224; //255 for pitch black
 
 //Static managers
 vector<Sprite*> Sprite::spriteManager;

@@ -46,23 +46,23 @@ void TimeClock::tick()
 			hour -= 24;
 		}
 	}
-	if (hour >= 4 && hour < 8)
+	if (hour >= 4 && hour < 8) //Night to day
 	{
 		alpha = maxNight - (((int)(minute)+(hour - 4) * 60) * ((double)maxNight / 240.0));
 	}
-	else if (hour >= 17 && hour < 21)
+	else if (hour >= 17 && hour < 21) //Day to night
 	{
 		alpha = (((int)(minute)+(hour - 17) * 60) * ((double)maxNight / 240.0));
 	}
-	else if (hour >= 8 && hour < 17)
+	else if (hour >= 8 && hour < 17) //Daytime
 	{
 		alpha = maxDay;
 	}
-	else if (hour >= 21 || hour < 4)
+	else if (hour >= 21 || hour < 4) //Nighttime
 	{
 		alpha = maxNight;
 	}
-	if (alpha >= maxDay && alpha <= maxNight)
+	if (alpha >= maxDay && alpha <= maxNight) //Set current max alpha for transitions
 	{
 		maxAlpha = alpha;
 	}

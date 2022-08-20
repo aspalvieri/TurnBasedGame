@@ -1,6 +1,20 @@
 #include "../header/Game.h"
 
 void Game::mainGameEvents() {
+	if (e.type == SDL_KEYDOWN) {
+		switch (e.key.keysym.sym) {
+		//Test::kill enemy on cursor
+		case SDLK_q:
+			for (auto enemy = enemies.begin(); enemy != enemies.end(); enemy++) {
+				if (checkCollision(mPosCam, &enemy->getBox())) {
+					enemy->alive = false;
+				}
+			}
+			break;
+		default:
+			break;
+		}
+	}
 	if (e.type == SDL_KEYUP) {
 		switch (e.key.keysym.sym) {
 		//Test::create enemy on cursor
@@ -32,14 +46,6 @@ void Game::mainGameEvents() {
 				}
 				spawnCheck = true;
 				cout << "Created enemy with ID: " << enemies.back().ID << ".\n";
-			}
-			break;
-		//Test::kill enemy on cursor
-		case SDLK_q:
-			for (auto enemy = enemies.begin(); enemy != enemies.end(); enemy++) {
-				if (checkCollision(mPosCam, &enemy->getBox())) {
-					enemy->alive = false;
-				}
 			}
 			break;
 		//Test::Show all dynamic map keys

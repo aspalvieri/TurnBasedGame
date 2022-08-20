@@ -3,6 +3,7 @@
 //Returns false if it hit something
 bool Game::checkAllCollision(CameraObj *ent) {
 	bool success = true;
+	colBox = { 0, 0, 0, 0 };
 
 	//Dynamic casts for later use
 	Projectile* proj = dynamic_cast<Projectile*>(ent);
@@ -15,6 +16,7 @@ bool Game::checkAllCollision(CameraObj *ent) {
 		for (int x = ent->camBounds->x; x <= ent->camBounds->w; x++) {
 			if (tiles[x+yIndex].getCollide() /*&& checkCollision(ent->camera, &tiles[x+yIndex].getBox())*/ && checkCollision(&ent->getBox(), &tiles[x+yIndex].getBox())) {
 				success = false;
+				colBox = tiles[x + yIndex].getBox();
 			}
 		}
 	}
@@ -51,7 +53,17 @@ void Game::updateEntity(Entity *ent) {
 		ent->setPosition(xPos + ent->xVel, yPos);
 		if (!checkAllCollision(ent)) {
 			//If it collided, undo it
-			ent->setPosition(xPos, yPos);
+			if (!SDL_RectEmpty(&colBox)) {
+				if (ent->getBox().x + ent->getBox().w >= colBox.x + colBox.w) {
+					ent->setPosition(colBox.x + colBox.w, yPos);
+				}
+				else {
+					ent->setPosition(colBox.x - ent->getBox().w, yPos);
+				}
+			}
+			else {
+				ent->setPosition(xPos, yPos);
+			}
 		}
 
 		//Move entity's Y position then check for collisions
@@ -60,7 +72,17 @@ void Game::updateEntity(Entity *ent) {
 		ent->setPosition(xPos, yPos + ent->yVel);
 		if (!checkAllCollision(ent)) {
 			//If it collided, undo it
-			ent->setPosition(xPos, yPos);
+			if (!SDL_RectEmpty(&colBox)) {
+				if (ent->getBox().y + ent->getBox().h >= colBox.y + colBox.h) {
+					ent->setPosition(xPos, colBox.y + colBox.h);
+				}
+				else {
+					ent->setPosition(xPos, colBox.y - ent->getBox().h);
+				}
+			}
+			else {
+				ent->setPosition(xPos, yPos);
+			}
 		}
 	}
 	//Update camera and camBounds
@@ -119,13 +141,11 @@ void Game::updateProjectile(Projectile * proj) {
 		if (!checkAllCollision(proj)) {
 			proj->setToDie("Die");
 			//Set projectile's size to a box for the 'explosion' effect
-			if (proj->getSize().first < proj->getSize().second)
-			{
+			if (proj->getSize().first < proj->getSize().second) {
 				proj->setSize(proj->getSize().second, proj->getSize().second);
 				proj->setPosition(proj->getBox().x - proj->getSize().second / 4.0, proj->getBox().y);
 			}
-			else if (proj->getSize().first > proj->getSize().second)
-			{
+			else if (proj->getSize().first > proj->getSize().second) {
 				proj->setSize(proj->getSize().first, proj->getSize().first);
 				proj->setPosition(proj->getBox().x, proj->getBox().y - proj->getSize().first / 4.0);
 			}

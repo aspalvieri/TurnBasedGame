@@ -85,6 +85,7 @@ private:
 
 	//Variables to check for if an enemy can spawn in
 	int collisionBlock = 0, collisionMod = 5;
+	SDL_Rect colBox = { 0, 0, 0, 0 };
 	bool spawnCheck = true, forceMoved = false;
 	vector<pair<int, int>> collisionCases = { {0,-1},{1,-1},{1,0},{1,1},{0,1},{-1,1},{-1,0},{-1,-1} };
 

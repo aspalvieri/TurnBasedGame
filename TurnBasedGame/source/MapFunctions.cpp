@@ -193,10 +193,10 @@ void Game::buildShaders() {
 		int yp1 = yIndex + (1 * indexMaxX); //y plus 1
 		for (int x = 0; x < indexMaxX; x++) {
 			//Set lighting square
-			tiles[x + yIndex].black[0] = Shader(x * TILE_SIZE, y * TILE_SIZE, &shaderClips[52], &dynamicMap["shaders"], true, false, 224);
-			tiles[x + yIndex].black[1] = Shader((x * TILE_SIZE) + HALF_TILE_SIZE, y * TILE_SIZE, &shaderClips[52], &dynamicMap["shaders"], true, false, 224);
-			tiles[x + yIndex].black[2] = Shader(x * TILE_SIZE, (y * TILE_SIZE) + HALF_TILE_SIZE, &shaderClips[52], &dynamicMap["shaders"], true, false, 224);
-			tiles[x + yIndex].black[3] = Shader((x * TILE_SIZE) + HALF_TILE_SIZE, (y * TILE_SIZE) + HALF_TILE_SIZE, &shaderClips[52], &dynamicMap["shaders"], true, false, 224);
+			tiles[x + yIndex].black[0] = Shader(x * TILE_SIZE, y * TILE_SIZE, &shaderClips[52], &dynamicMap["shaders"], true, false, 255);
+			tiles[x + yIndex].black[1] = Shader((x * TILE_SIZE) + HALF_TILE_SIZE, y * TILE_SIZE, &shaderClips[52], &dynamicMap["shaders"], true, false, 255);
+			tiles[x + yIndex].black[2] = Shader(x * TILE_SIZE, (y * TILE_SIZE) + HALF_TILE_SIZE, &shaderClips[52], &dynamicMap["shaders"], true, false, 255);
+			tiles[x + yIndex].black[3] = Shader((x * TILE_SIZE) + HALF_TILE_SIZE, (y * TILE_SIZE) + HALF_TILE_SIZE, &shaderClips[52], &dynamicMap["shaders"], true, false, 255);
 			//Ensure it's not an edge tile
 			if (!edgeTile(x, yIndex)) {
 				//Casting shadows onto tiles
