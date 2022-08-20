@@ -36,3 +36,6 @@ ipch/
 *.[Cc]ache
 # but keep track of directories ending in .cache
 !*.[Cc]ache/
+
+#Licenses for the DLLs (which aren't included)
+Licenses/
