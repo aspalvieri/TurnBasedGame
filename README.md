@@ -16,6 +16,7 @@ SDL2_ttf.libg
 ```
 
 ### Required DLL Files
+Place these in the root folder, where the header and source folders are:
 ```
 libfreetype-6.dll
 libmpg123-0.dll
